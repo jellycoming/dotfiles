@@ -11,4 +11,4 @@ export PYTHONDONTWRITEBYTECODE=x
 alias ll='ls -lh'
 
 export GOPATH=$HOME/workspace/golang/lib:$HOME/workspace/golang
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:$HOME/workspace/golang/lib/bin:$HOME/workspace/golang/bin
