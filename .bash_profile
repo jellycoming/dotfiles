@@ -10,8 +10,5 @@ export TERM=xterm-color
 export PYTHONDONTWRITEBYTECODE=x
 alias ll='ls -lh'
 
-# export GOPATH=$HOME/workspace/golang/lib:$HOME/workspace/golang
-# export PATH=$PATH:$HOME/workspace/golang/lib/bin:$HOME/workspace/golang/bin
-
-export GOPATH=$HOME/workspace/golang/lib
+export GOPATH=$HOME/go/lib
 export PATH=$PATH:$GOPATH/bin
