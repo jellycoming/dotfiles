@@ -10,5 +10,5 @@ export TERM=xterm-color
 export PYTHONDONTWRITEBYTECODE=x
 alias ll='ls -lh'
 
-export GOPATH=$HOME/go/lib
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
