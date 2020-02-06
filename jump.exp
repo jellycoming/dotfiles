@@ -1,0 +1,43 @@
+#!/usr/bin/expect
+set timeout 30
+
+if { $argc == 3 } {
+    set user [lindex $argv 0]
+    set host [lindex $argv 1]
+    set passwd [lindex $argv 2]
+
+    spawn ssh $user@$host
+    expect {
+        "(yes/no)?"
+        {send "yes\n";exp_continue}
+        "password:"
+        {send "$passwd\n"}
+    }
+    interact
+} elseif { $argc == 6 } {
+    set jump_user [lindex $argv 0]
+    set jump_host [lindex $argv 1]
+    set jump_passwd [lindex $argv 2]
+    set user [lindex $argv 3]
+    set host [lindex $argv 4]
+    set passwd [lindex $argv 5]
+    spawn ssh $jump_user@$jump_host
+    expect {
+        "(yes/no)?"
+        {send "yes\n";exp_continue}
+        "password:"
+        {send "$jump_passwd\n"}
+    }
+    expect "*$jump_user@*" {send "ssh $user@$host\n"}
+    expect {
+        "(yes/no)?"
+        {send "yes\n";exp_continue}
+        "password:"
+        {send "$passwd\n"}
+    }
+    interact
+} else {
+    puts "usage: jump.exp remote_user remote_host remote_passwd (Direct Login)"
+    puts "usage: jump.exp jump_user jump_host jump_passwd remote_user remote_host remote_passwd (Jump Login)"
+    exit 1
+}
